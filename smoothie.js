@@ -233,10 +233,10 @@
    * whether it is replaced, or the values summed (defaults to false.)
    */
   TimeSeries.prototype.append = function(timestamp, value, sumRepeatedTimeStampValues) {
-	// Reject NaN
-	if (isNaN(timestamp) || isNaN(value)){
-		return
-	}  
+    // Reject NaN
+    if (isNaN(timestamp) || isNaN(value)) {
+      return;
+    }
 
     var lastI = this.data.length - 1;
     if (lastI >= 0) {
@@ -609,7 +609,7 @@
 
   SmoothieChart.prototype.updateTooltip = function () {
     if(!this.options.tooltip){
-     return; 
+     return;
     }
     var el = this.getTooltipEl();
 
@@ -658,7 +658,7 @@
     this.mousePageX = evt.pageX;
     this.mousePageY = evt.pageY;
     if(!this.options.tooltip){
-     return; 
+     return;
     }
     var el = this.getTooltipEl();
     el.style.top = Math.round(this.mousePageY) + 'px';
