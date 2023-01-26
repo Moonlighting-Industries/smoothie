@@ -1154,7 +1154,7 @@
         var titleYPos = dimensions.height / 2;
       } else {
         context.textBaseline = 'top';
-        var titleYPos = 0;
+        var titleYPos = 5;
       }
       context.fillStyle = chartOptions.title.fillStyle;
       context.fillText(chartOptions.title.text, titleXPos, titleYPos);
