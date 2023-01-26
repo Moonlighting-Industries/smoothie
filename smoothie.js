@@ -110,6 +110,7 @@
  * v1.36.2: fix: 1px lines jumping 1px left and right at rational `millisPerPixel`, by @WofWca
  *          perf: improve `render()` performane a bit, by @WofWca
  * v1.37: Add `fillToBottom` option to fill timeSeries to 0 instead of to the bottom of the canvas, by @socketpair & @WofWca (#140)
+ * Moon:  Add option for no interpolation.
  */
 
   // Date.now polyfill
@@ -318,7 +319,7 @@
    *     return parseFloat(intermediate).toFixed(precision);
    *   },
    *   maxDataSetLength: 2,
-   *   interpolation: 'bezier'                   // one of 'bezier', 'linear', or 'step'
+   *   interpolation: 'bezier'                   // one of 'none', 'bezier', 'linear', or 'step'
    *   timestampFormatter: null,                 // optional function to format time stamps for bottom of chart
    *                                             // you may use SmoothieChart.timeFormatter, or your own: function(date) { return ''; }
    *   scrollBackwards: false,                   // reverse the scroll direction of the chart
@@ -999,6 +1000,11 @@
         draw;
       context.moveTo(firstX, firstY);
       switch (seriesOptions.interpolation || chartOptions.interpolation) {
+        case "none":
+          // Just draws the data points.
+          context.moveTo(x, y)
+          context.arc(x, y, 1, 0, Math.PI * 2, true);
+          break;
         case "linear":
         case "line": {
           draw = function(x, y, lastX, lastY) {
