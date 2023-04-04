@@ -1002,8 +1002,10 @@
       switch (seriesOptions.interpolation || chartOptions.interpolation) {
         case "none":
           // Just draws the data points.
-          context.moveTo(x, y)
-          context.arc(x, y, 1, 0, Math.PI * 2, true);
+          draw = function(x, y, lastX, lastY) {
+            context.moveTo(x, y)
+            context.arc(x, y, 1, 0, Math.PI * 2, true);
+          }
           break;
         case "linear":
         case "line": {
